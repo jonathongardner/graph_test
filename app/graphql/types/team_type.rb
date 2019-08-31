@@ -11,12 +11,12 @@ module Types
     end
 
     def players(name: nil, order: nil, asc: true, limit: nil, page: 1)
-      scope = object.players
+      scope = Player.all
       scope = scope.where(name: name) if name
       scope = scope.order(order => asc ? 'asc' : 'desc') if order
       scope = scope.limit(limit) if limit
       scope = scope.offset((page - 1) * limit) if limit && page > 1
-      scope
+      GraphqlLazyLoad::ActiveRecordRelation.new(self, :players, scope: scope)
     end
   end
 end

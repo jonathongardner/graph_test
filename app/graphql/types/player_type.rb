@@ -6,7 +6,7 @@ module Types
     field :team, Types::TeamType, null: false
 
     def team
-      object.team
+      GraphqlLazyLoad::ActiveRecordRelation.new(self, :team)
     end
   end
 end

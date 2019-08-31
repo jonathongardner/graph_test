@@ -35,6 +35,7 @@ gem 'turbolinks', '~> 5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'graphql'
+gem 'graphql_lazy_load', '~> 0.1.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
