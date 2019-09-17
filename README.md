@@ -34,3 +34,38 @@ A good query to see N+1 queries disappear is:
   }
 }
 ```
+
+A good query to see custom vs association is:
+```graphql
+{
+  teams {
+    id
+    players {
+      id
+      position {
+        id
+        players {
+          id
+        }
+      }
+      team {
+        id
+      }
+    }
+    playersCustom {
+      id
+      positionCustom {
+        id
+        playersCustom {
+          id
+        }
+      }
+      teamCustom {
+        id
+      }
+    }
+  }
+}
+```
+
+Everything you can do with association graphql_lazy_load you can do with custom, but custom has more freedom to do more things.
