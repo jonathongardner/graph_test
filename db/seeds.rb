@@ -5,96 +5,106 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-qb = Position.create!(label: 'Quarterback')
-rb = Position.create!(label: 'Running Back')
-wr = Position.create!(label: 'Wide Reciever')
-s = Position.create!(label: 'Safety')
-cb = Position.create!(label: 'Cornerback')
-lb = Position.create!(label: 'Linebacker')
+User.find_or_create_by!(username: 'generic') do |user|
+  user.password = 'password'
+  user.email = 'generic@somewhere.com'
+end
+User.find_or_create_by!(username: 'admin') do |user|
+  user.password = 'password'
+  user.email = 'admin@somewhere.com'
+  user.admin = true
+end
 
-eagles = Team.create!(name: 'Eagles')
-falcons = Team.create!(name: 'Falcons')
+qb = Position.find_or_create_by!(label: 'Quarterback')
+rb = Position.find_or_create_by!(label: 'Running Back')
+wr = Position.find_or_create_by!(label: 'Wide Reciever')
+s = Position.find_or_create_by!(label: 'Safety')
+cb = Position.find_or_create_by!(label: 'Cornerback')
+lb = Position.find_or_create_by!(label: 'Linebacker')
 
-Player.create!(
+eagles = Team.find_or_create_by!(name: 'Eagles')
+falcons = Team.find_or_create_by!(name: 'Falcons')
+
+Player.find_or_create_by!(
   name: 'Jon G',
   number: "5",
   team: falcons,
   position: wr,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Caleb B',
   number: "47",
   team: falcons,
   position: rb,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Preston H',
   number: "37",
   team: falcons,
   position: wr,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Juan R',
   number: "24",
   team: falcons,
   position: qb,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Justin M',
   number: "24",
   team: falcons,
   position: wr,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Brooks M',
   number: "32",
   team: falcons,
   position: wr,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Eddie G',
   number: "25",
   team: falcons,
   position: cb,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Andrew S',
   number: "12",
   team: falcons,
   position: qb,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Bennett T',
   number: "22",
   team: falcons,
   position: s,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Bennett T',
   number: "22",
   team: falcons,
   position: s,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Jordan J',
   number: "8",
   team: falcons,
   position: s,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Aaron S',
   number: "22",
   team: falcons,
   position: lb,
 )
 
-Player.create!(
+Player.find_or_create_by!(
   name: 'John H',
   number: "32",
   team: eagles,
   position: wr,
 )
-Player.create!(
+Player.find_or_create_by!(
   name: 'Mike H',
   number: "25",
   team: falcons,
