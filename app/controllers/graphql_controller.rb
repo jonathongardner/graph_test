@@ -3,12 +3,17 @@ class GraphqlController < ApplicationController
     variables = ensure_hash(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+    Rails.logger.info('----------------------------------')
+    Rails.logger.info("#{current_user&.username}")
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user,# can be nil if current_user bad token or no token
     }
-    result = GraphTestSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
+    # https://github.com/rmosolgo/graphql-ruby/blob/master/guides/schema/limiting_visibility.md
+    filter = Filter.new(current_user)
+    result = GraphTestSchema.execute(query, only: filter, variables: variables, context: context, operation_name: operation_name)
     render json: result
+  rescue Slots::JWT::InvalidToken, Slots::JWT::AuthenticationFailed
+    raise
   rescue => e
     raise e unless Rails.env.development?
     handle_error_in_development e
